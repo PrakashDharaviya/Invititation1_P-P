@@ -1,0 +1,624 @@
+/* ── GOOGLE FONTS ─────────────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+Gujarati:wght@400;500;600;700;800;900&family=Hind+Vadodara:wght@300;400;500;600;700&family=Anek+Gujarati:wght@400;500;600;700;800&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Poppins:wght@300;400;500;600;700&display=swap');
+
+@import "tailwindcss";
+
+/* ── THEME CUSTOM PROPERTIES ──────────────────────────────────────────── */
+:root {
+  /* Primary Palette */
+  --color-maroon: #6B1022;
+  --color-maroon-dark: #4A0B17;
+  --color-maroon-light: #8A1A30;
+  --color-gold: #C9A24B;
+  --color-gold-light: #E8CF8A;
+  --color-gold-dark: #B8892F;
+  --color-ivory: #FFF8EC;
+  --color-ivory-warm: #FFF5E0;
+  --color-saffron: #E07B1F;
+  --color-dark: #2A1216;
+  --color-green: #2F5D3A;
+
+  /* Gold shimmer gradient */
+  --gold-shimmer: linear-gradient(135deg, #E8CF8A 0%, #C9A24B 30%, #B8892F 50%, #C9A24B 70%, #E8CF8A 100%);
+  --gold-text: linear-gradient(135deg, #E8CF8A, #C9A24B, #B8892F, #E8CF8A);
+
+  /* Maroon gradient */
+  --maroon-gradient: linear-gradient(135deg, #6B1022, #4A0B17);
+  --maroon-velvet: linear-gradient(180deg, #5C0E1D, #3D0912, #6B1022);
+
+  /* Typography */
+  --font-gujarati-display: 'Noto Serif Gujarati', 'Anek Gujarati', serif;
+  --font-gujarati-body: 'Hind Vadodara', 'Noto Sans Gujarati', sans-serif;
+  --font-gujarati-accent: 'Anek Gujarati', serif;
+  --font-latin-display: 'Cormorant Garamond', serif;
+  --font-latin-body: 'Poppins', sans-serif;
+
+  /* Spacing */
+  --section-padding: clamp(3rem, 8vw, 6rem);
+  --content-max: 1200px;
+
+  /* Animations */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out-sine: cubic-bezier(0.37, 0, 0.63, 1);
+
+  /* Scroll progress */
+  --scroll-progress: 0;
+}
+
+/* ── BASE STYLES ──────────────────────────────────────────────────────── */
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
+  body {
+    font-family: var(--font-gujarati-body);
+    background-color: var(--color-ivory);
+    color: var(--color-dark);
+    line-height: 1.7;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Gujarati line-height fix - ensure matras don't clip */
+  [lang="gu"] body,
+  .gu-text {
+    line-height: 1.8;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-gujarati-display);
+    line-height: 1.4;
+    font-weight: 700;
+  }
+
+  [lang="en"] h1,
+  [lang="en"] h2,
+  [lang="en"] h3,
+  [lang="en"] h4 {
+    font-family: var(--font-latin-display);
+  }
+
+  [lang="en"] body {
+    font-family: var(--font-latin-body);
+    line-height: 1.6;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  button {
+    cursor: pointer;
+    border: none;
+    background: none;
+    font-family: inherit;
+  }
+
+  /* Focus visible */
+  :focus-visible {
+    outline: 2px solid var(--color-gold);
+    outline-offset: 2px;
+  }
+
+  /* Safe area for notched phones */
+  body {
+    padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+  }
+
+  /* Selection */
+  ::selection {
+    background: var(--color-gold-light);
+    color: var(--color-maroon-dark);
+  }
+}
+
+/* ── SCROLL PROGRESS BAR ──────────────────────────────────────────────── */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: var(--gold-shimmer);
+  z-index: 9999;
+  transform-origin: left;
+  transition: transform 0.1s linear;
+}
+
+/* ── GOLD SHIMMER TEXT ────────────────────────────────────────────────── */
+.gold-shimmer-text {
+  background: var(--gold-text);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 3s linear infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: 0% center; }
+  100% { background-position: 200% center; }
+}
+
+/* ── SECTION WRAPPER ──────────────────────────────────────────────────── */
+.section-wrapper {
+  padding: var(--section-padding) 1.5rem;
+  max-width: var(--content-max);
+  margin: 0 auto;
+}
+
+.section-full {
+  padding: var(--section-padding) 0;
+}
+
+/* ── PAPER TEXTURE OVERLAY ────────────────────────────────────────────── */
+.paper-texture {
+  position: relative;
+}
+.paper-texture::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4'%3E%3Cpath d='M1 3h1v1H1V3zm2-2h1v1H3V1z' fill='%23C9A24B' fill-opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ── DAMASK PATTERN BG ────────────────────────────────────────────────── */
+.damask-bg {
+  background-color: var(--color-ivory);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Cpath d='M20 0c2 4 8 8 8 12s-4 8-8 8-8-4-8-8S18 4 20 0zm0 20c2 4 8 8 8 12s-4 8-8 8-8-4-8-8 6-8 8-12z' fill='%23C9A24B' fill-opacity='0.04'/%3E%3C/svg%3E");
+}
+
+/* ── MAROON VELVET SECTION ────────────────────────────────────────────── */
+.velvet-bg {
+  background: var(--maroon-velvet);
+  color: var(--color-ivory);
+  position: relative;
+}
+.velvet-bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 0%, rgba(0,0,0,0.3) 100%);
+  pointer-events: none;
+}
+
+/* ── ORNAMENT BORDER ──────────────────────────────────────────────────── */
+.ornament-border {
+  border: 1px solid var(--color-gold-light);
+  border-image: linear-gradient(135deg, var(--color-gold-light), var(--color-gold), var(--color-gold-light)) 1;
+}
+
+/* ── BUTTON STYLES ────────────────────────────────────────────────────── */
+.btn-gold {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.875rem 2rem;
+  background: var(--gold-shimmer);
+  color: var(--color-maroon-dark);
+  font-weight: 600;
+  font-size: 0.95rem;
+  border-radius: 4px;
+  letter-spacing: 0.02em;
+  transition: all 0.3s var(--ease-out-expo);
+  position: relative;
+  overflow: hidden;
+  min-height: 44px;
+  min-width: 44px;
+}
+.btn-gold::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, transparent, rgba(255,255,255,0.3), transparent);
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
+}
+.btn-gold:hover::before {
+  transform: translateX(100%);
+}
+.btn-gold:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(201, 162, 75, 0.4);
+}
+.btn-gold:active {
+  transform: scale(0.97);
+}
+
+.btn-maroon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.875rem 2rem;
+  background: var(--maroon-gradient);
+  color: var(--color-ivory);
+  font-weight: 600;
+  font-size: 0.95rem;
+  border-radius: 4px;
+  letter-spacing: 0.02em;
+  transition: all 0.3s var(--ease-out-expo);
+  position: relative;
+  overflow: hidden;
+  min-height: 44px;
+  min-width: 44px;
+}
+.btn-maroon:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(107, 16, 34, 0.4);
+}
+
+.btn-outline-gold {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.75rem;
+  border: 1.5px solid var(--color-gold);
+  color: var(--color-gold);
+  font-weight: 500;
+  font-size: 0.9rem;
+  border-radius: 4px;
+  transition: all 0.3s var(--ease-out-expo);
+  min-height: 44px;
+  min-width: 44px;
+}
+.btn-outline-gold:hover {
+  background: var(--color-gold);
+  color: var(--color-maroon-dark);
+  transform: translateY(-1px);
+}
+
+/* ── CARD STYLES ──────────────────────────────────────────────────────── */
+.card-ornate {
+  background: var(--color-ivory);
+  border: 1px solid rgba(201, 162, 75, 0.3);
+  border-radius: 8px;
+  padding: 2rem;
+  position: relative;
+  box-shadow: 0 4px 24px rgba(42, 18, 22, 0.06);
+  transition: transform 0.4s var(--ease-out-expo), box-shadow 0.4s ease;
+}
+.card-ornate:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(42, 18, 22, 0.12);
+}
+
+/* ── GLASS BLUR ───────────────────────────────────────────────────────── */
+.glass {
+  background: rgba(255, 248, 236, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(201, 162, 75, 0.15);
+}
+
+/* ── TORAN SVG DECORATION ─────────────────────────────────────────────── */
+.toran-decoration {
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 2px 4px rgba(201, 162, 75, 0.2));
+}
+
+/* ── PRELOADER ────────────────────────────────────────────────────────── */
+.preloader-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-maroon-dark);
+  overflow: hidden;
+}
+
+.preloader-door {
+  position: absolute;
+  top: 0;
+  width: 50%;
+  height: 100%;
+  background: var(--maroon-gradient);
+  transition: transform 1.2s var(--ease-out-expo);
+  z-index: 2;
+}
+.preloader-door--left {
+  left: 0;
+  border-right: 2px solid var(--color-gold);
+}
+.preloader-door--right {
+  right: 0;
+  border-left: 2px solid var(--color-gold);
+}
+.preloader-door--left.open {
+  transform: translateX(-100%);
+}
+.preloader-door--right.open {
+  transform: translateX(100%);
+}
+
+/* ── FLOATING PETALS ──────────────────────────────────────────────────── */
+.petal {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background: var(--color-saffron);
+  border-radius: 0 50% 50% 50%;
+  opacity: 0.6;
+  pointer-events: none;
+  animation: floatPetal var(--duration, 8s) var(--delay, 0s) infinite linear;
+}
+
+@keyframes floatPetal {
+  0% {
+    transform: translateY(-20px) rotate(0deg) translateX(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.6;
+  }
+  90% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(100vh) rotate(720deg) translateX(calc(var(--drift, 50px)));
+    opacity: 0;
+  }
+}
+
+/* ── SPARKLE ──────────────────────────────────────────────────────────── */
+.sparkle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: var(--color-gold-light);
+  border-radius: 50%;
+  pointer-events: none;
+  animation: sparkle var(--duration, 3s) var(--delay, 0s) infinite;
+}
+
+@keyframes sparkle {
+  0%, 100% { opacity: 0; transform: scale(0); }
+  50% { opacity: 1; transform: scale(1); }
+}
+
+/* ── FLIP CARD DIGIT ──────────────────────────────────────────────────── */
+.flip-card {
+  perspective: 300px;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.flip-digit {
+  width: clamp(48px, 14vw, 72px);
+  height: clamp(56px, 16vw, 84px);
+  background: var(--maroon-gradient);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-gujarati-display);
+  font-size: clamp(1.5rem, 5vw, 2.5rem);
+  font-weight: 700;
+  color: var(--color-gold-light);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(42, 18, 22, 0.2);
+}
+
+.flip-digit::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 1px;
+  background: rgba(201, 162, 75, 0.2);
+}
+
+.flip-label {
+  font-size: clamp(0.6rem, 2vw, 0.8rem);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-gold);
+  font-weight: 500;
+}
+
+/* ── TIMELINE ─────────────────────────────────────────────────────────── */
+.timeline-line {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(180deg, transparent, var(--color-gold), transparent);
+  transform: translateX(-50%);
+}
+
+@media (max-width: 768px) {
+  .timeline-line {
+    left: 24px;
+  }
+}
+
+.timeline-dot {
+  width: 16px;
+  height: 16px;
+  background: var(--color-gold);
+  border: 3px solid var(--color-ivory);
+  border-radius: 50%;
+  box-shadow: 0 0 0 3px var(--color-gold);
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+}
+
+@media (max-width: 768px) {
+  .timeline-dot {
+    left: 24px;
+  }
+}
+
+/* ── SCRATCH CARD ─────────────────────────────────────────────────────── */
+.scratch-container {
+  position: relative;
+  width: min(340px, 90vw);
+  height: 200px;
+  margin: 0 auto;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(42, 18, 22, 0.15);
+}
+
+.scratch-reveal {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  background: var(--gold-shimmer);
+  text-align: center;
+}
+
+.scratch-canvas {
+  position: absolute;
+  inset: 0;
+  cursor: grab;
+  touch-action: none;
+}
+
+/* ── VENUE CARD ───────────────────────────────────────────────────────── */
+.venue-card {
+  background: var(--color-ivory-warm);
+  border: 1px solid rgba(201, 162, 75, 0.25);
+  border-radius: 12px;
+  padding: 2rem;
+  text-align: center;
+  transition: all 0.4s var(--ease-out-expo);
+}
+.venue-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(201, 162, 75, 0.15);
+  border-color: var(--color-gold);
+}
+
+/* ── HAMBURGER ────────────────────────────────────────────────────────── */
+.hamburger-line {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--color-gold);
+  transition: all 0.3s ease;
+  border-radius: 2px;
+}
+
+/* ── REDUCED MOTION ───────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .petal, .sparkle {
+    display: none !important;
+  }
+}
+
+/* ── CUSTOM SCROLLBAR ─────────────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-ivory);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-gold);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-gold-dark);
+}
+
+/* ── LIGHTBOX ─────────────────────────────────────────────────────────── */
+.lightbox-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  background: rgba(42, 18, 22, 0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── MOBILE MENU ──────────────────────────────────────────────────────── */
+.mobile-menu-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9990;
+  background: var(--color-maroon-dark);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+}
+
+/* ── HEADING ORNAMENT ─────────────────────────────────────────────────── */
+.heading-ornament {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+.heading-ornament::before,
+.heading-ornament::after {
+  content: '';
+  width: clamp(40px, 10vw, 80px);
+  height: 1px;
+  background: var(--gold-shimmer);
+}
+
+/* ── SVG STROKE ANIMATION ─────────────────────────────────────────────── */
+.draw-svg {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: drawStroke 2.5s ease forwards;
+}
+
+@keyframes drawStroke {
+  to { stroke-dashoffset: 0; }
+}
+
+/* ── GANESH SVG EASTER EGG ────────────────────────────────────────────── */
+.ganesh-interactive {
+  cursor: pointer;
+  transition: filter 0.3s ease;
+}
+.ganesh-interactive:hover {
+  filter: drop-shadow(0 0 12px var(--color-gold-light));
+}
