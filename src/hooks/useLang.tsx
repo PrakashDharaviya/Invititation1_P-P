@@ -16,7 +16,7 @@ export function LangProvider({ children }: { children: ReactNode }) {
       const saved = localStorage.getItem('wedding-lang');
       if (saved === 'en' || saved === 'gu') return saved;
     } catch {}
-    return 'gu';
+    return 'en';
   });
 
   const setLang = (l: Lang) => {

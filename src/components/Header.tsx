@@ -32,9 +32,7 @@ export default function Header({ isVisible, isMuted, onToggleMute }: HeaderProps
   return (
     <>
       <motion.header
-        className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-500 ${
-          scrolled ? 'glass shadow-lg' : 'bg-transparent'
-        }`}
+        className={`header-frosted ${scrolled ? 'header-frosted--scrolled' : ''}`}
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
@@ -44,11 +42,11 @@ export default function Header({ isVisible, isMuted, onToggleMute }: HeaderProps
           <motion.a
             href="#"
             onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-            className="text-[var(--color-gold)] font-bold text-xl tracking-wider"
+            className="header-monogram"
             style={{ fontFamily: 'var(--font-latin-display)' }}
             whileHover={{ scale: 1.05 }}
           >
-            P <span className="text-[var(--color-saffron)]">&amp;</span> P
+            P <span className="header-monogram-amp">&amp;</span> P
           </motion.a>
 
           {/* Desktop Nav */}
@@ -57,10 +55,10 @@ export default function Header({ isVisible, isMuted, onToggleMute }: HeaderProps
               <button
                 key={link.id}
                 onClick={() => handleNavClick(link.id)}
-                className="text-[var(--color-dark)] hover:text-[var(--color-gold)] transition-colors text-sm font-medium tracking-wide relative group"
+                className="header-nav-link"
               >
                 {t(link.label)}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[var(--color-gold)] transition-all duration-300 group-hover:w-full" />
+                <span className="header-nav-underline" />
               </button>
             ))}
           </nav>
@@ -70,7 +68,7 @@ export default function Header({ isVisible, isMuted, onToggleMute }: HeaderProps
             {/* Language Toggle */}
             <button
               onClick={toggleLang}
-              className="px-3 py-1.5 rounded-full border border-[var(--color-gold)] text-[var(--color-gold)] text-xs font-semibold tracking-wider transition-all hover:bg-[var(--color-gold)] hover:text-[var(--color-maroon-dark)] min-w-[44px] min-h-[44px] flex items-center justify-center"
+              className="header-circle-btn"
               aria-label={`Switch to ${lang === 'gu' ? 'English' : 'Gujarati'}`}
             >
               {lang === 'gu' ? 'EN' : 'ગુ'}
@@ -79,7 +77,7 @@ export default function Header({ isVisible, isMuted, onToggleMute }: HeaderProps
             {/* Music Toggle */}
             <button
               onClick={onToggleMute}
-              className="w-11 h-11 rounded-full border border-[var(--color-gold)] text-[var(--color-gold)] flex items-center justify-center transition-all hover:bg-[var(--color-gold)] hover:text-[var(--color-maroon-dark)]"
+              className="header-circle-btn"
               aria-label={isMuted ? 'Unmute music' : 'Mute music'}
             >
               {isMuted ? (
@@ -99,7 +97,7 @@ export default function Header({ isVisible, isMuted, onToggleMute }: HeaderProps
 
             {/* Mobile Hamburger */}
             <button
-              className="md:hidden w-11 h-11 flex flex-col items-center justify-center gap-1.5"
+              className="md:hidden header-circle-btn flex-col !gap-1"
               onClick={() => setMobileOpen(!mobileOpen)}
               aria-label="Toggle menu"
               aria-expanded={mobileOpen}

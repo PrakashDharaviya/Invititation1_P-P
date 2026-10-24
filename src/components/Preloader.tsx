@@ -158,6 +158,11 @@ export default function Preloader({ onComplete }: PreloaderProps) {
         <p className="text-[var(--color-maroon)] text-xs md:text-sm italic opacity-80 mt-4 font-serif">
           {lang === 'gu' ? 'સપ્રેમ આમંત્રણ' : 'With love, we invite you'}
         </p>
+
+        {/* Studio Credit */}
+        <p className="text-[var(--color-gold-dark)] text-[0.6rem] md:text-[0.65rem] tracking-[0.15em] opacity-50 mt-3 uppercase font-medium">
+          Bajrang Studio – Jamnagar
+        </p>
       </div>
     </div>
   );
