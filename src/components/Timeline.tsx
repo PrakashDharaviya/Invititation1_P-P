@@ -4,6 +4,65 @@ import { useLang } from '../hooks/useLang';
 import { timeline } from '../data/content';
 import { EventIcons, ToranSvg } from '../assets/ornaments';
 
+/* ── Inline SVG Icons ────────────────────────────────────────────────── */
+
+/** Stopwatch / Clock icon (matches the user's reference) */
+function ClockIcon({ className = '' }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      {/* Ring at top */}
+      <circle cx="12" cy="2.5" r="1.5" fill="currentColor" stroke="none" />
+      {/* Main circle */}
+      <circle cx="12" cy="13.5" r="9" />
+      {/* Tick marks */}
+      <line x1="12" y1="5.5" x2="12" y2="7" />
+      <line x1="12" y1="20" x2="12" y2="21.5" />
+      <line x1="4" y1="13.5" x2="5.5" y2="13.5" />
+      <line x1="18.5" y1="13.5" x2="20" y2="13.5" />
+      {/* Hands */}
+      <line x1="12" y1="13.5" x2="12" y2="9" />
+      <line x1="12" y1="13.5" x2="15.5" y2="11.5" />
+    </svg>
+  );
+}
+
+/** Calendar icon (matches the user's reference) */
+function CalendarIcon({ className = '' }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      {/* Body */}
+      <rect x="3" y="5" width="18" height="16" rx="3" />
+      {/* Top rings */}
+      <line x1="8" y1="2" x2="8" y2="7" />
+      <line x1="16" y1="2" x2="16" y2="7" />
+      {/* Divider line */}
+      <line x1="3" y1="10" x2="21" y2="10" />
+      {/* Grid squares */}
+      <rect x="7" y="13" width="2.5" height="2" rx="0.3" fill="currentColor" stroke="none" />
+      <rect x="11" y="13" width="2.5" height="2" rx="0.3" fill="currentColor" stroke="none" />
+      <rect x="15" y="13" width="2.5" height="2" rx="0.3" fill="currentColor" stroke="none" />
+      <rect x="7" y="17" width="2.5" height="2" rx="0.3" fill="currentColor" stroke="none" />
+      <rect x="11" y="17" width="2.5" height="2" rx="0.3" fill="currentColor" stroke="none" />
+    </svg>
+  );
+}
+
 /** Generate an .ics calendar file content */
 function generateICS(title: string, start: string, durationMinutes: number, location?: string): string {
   const startDate = new Date(start);
@@ -128,19 +187,21 @@ export default function Timeline() {
                             >
                               {t(event.name)}
                             </h4>
-                            <p className="text-[var(--color-gold-dark)] text-sm mt-1 font-medium">
-                              🕐 {t(event.time)}
+                            <p className="text-[var(--color-gold-dark)] text-sm mt-1 font-medium flex items-center gap-1.5">
+                              <ClockIcon className="w-4 h-4 inline-block flex-shrink-0" />
+                              {t(event.time)}
                             </p>
                           </div>
                         </div>
 
                         {/* Add to calendar */}
                         <button
-                          className="btn-outline-gold mt-4 text-xs w-full"
+                          className="btn-outline-gold mt-4 text-xs w-full flex items-center justify-center gap-2"
                           onClick={() => handleAddCalendar(event.calendarTitle, event.date, event.durationMinutes)}
                           aria-label={`Add ${event.calendarTitle} to calendar`}
                         >
-                          📅 {t({ gu: 'કૅલેન્ડરમાં ઉમેરો', en: 'Add to Calendar' })}
+                          <CalendarIcon className="w-4 h-4 flex-shrink-0" />
+                          {t({ gu: 'કૅલેન્ડરમાં ઉમેરો', en: 'Add to Calendar' })}
                         </button>
                       </div>
                     </motion.div>

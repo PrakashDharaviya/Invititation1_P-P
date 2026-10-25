@@ -5,51 +5,90 @@ import React from 'react';
 
 export const GaneshSvg: React.FC<{ className?: string; onClick?: () => void }> = ({ className = '', onClick }) => (
   <svg
-    viewBox="0 0 120 140"
-    className={`${className}`}
+    viewBox="0 0 100 120"
+    className={className}
     onClick={onClick}
     role={onClick ? 'button' : 'img'}
-    aria-label="Ganesh Ji"
+    aria-label="Lord Ganesh"
     tabIndex={onClick ? 0 : undefined}
     onKeyDown={onClick ? (e) => e.key === 'Enter' && onClick() : undefined}
-    fill="none"
+    fill="currentColor"
     xmlns="http://www.w3.org/2000/svg"
   >
-    {/* Crown/Head ornament */}
-    <path d="M60 8 L52 20 L42 16 L46 28 L36 28 L44 38 L60 32 L76 38 L84 28 L74 28 L78 16 L68 20 Z"
-      stroke="currentColor" strokeWidth="1.2" fill="none" className="draw-svg" />
-    {/* Head circle */}
-    <ellipse cx="60" cy="48" rx="22" ry="20" stroke="currentColor" strokeWidth="1.5" fill="none" />
-    {/* Eyes */}
-    <ellipse cx="52" cy="44" rx="3" ry="2.5" stroke="currentColor" strokeWidth="1" fill="currentColor" opacity="0.7" />
-    <ellipse cx="68" cy="44" rx="3" ry="2.5" stroke="currentColor" strokeWidth="1" fill="currentColor" opacity="0.7" />
-    {/* Trunk */}
-    <path d="M60 55 Q58 65 52 72 Q48 78 52 82 Q56 84 58 80 Q60 76 60 70"
-      stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round" />
-    {/* Ears */}
-    <path d="M38 42 Q28 38 26 48 Q24 58 34 56" stroke="currentColor" strokeWidth="1.2" fill="none" />
-    <path d="M82 42 Q92 38 94 48 Q96 58 86 56" stroke="currentColor" strokeWidth="1.2" fill="none" />
-    {/* Tusk */}
-    <path d="M64 60 L68 68 L66 66" stroke="currentColor" strokeWidth="1" fill="currentColor" opacity="0.5" />
-    {/* Body */}
-    <ellipse cx="60" cy="95" rx="28" ry="22" stroke="currentColor" strokeWidth="1.5" fill="none" />
-    {/* Belly */}
-    <path d="M48 90 Q60 105 72 90" stroke="currentColor" strokeWidth="1" fill="none" opacity="0.5" />
-    {/* Arms - left holding modak */}
-    <path d="M32 85 Q22 80 20 88 Q18 96 26 94" stroke="currentColor" strokeWidth="1.2" fill="none" />
-    {/* Small modak/ladoo */}
-    <circle cx="22" cy="90" r="5" stroke="currentColor" strokeWidth="1" fill="none" />
-    {/* Arms - right holding flower */}
-    <path d="M88 85 Q98 80 100 88 Q102 96 94 94" stroke="currentColor" strokeWidth="1.2" fill="none" />
-    {/* Flower */}
-    <circle cx="98" cy="88" r="3" stroke="currentColor" strokeWidth="0.8" fill="none" />
-    <circle cx="98" cy="88" r="1" stroke="currentColor" strokeWidth="0.8" fill="currentColor" opacity="0.3" />
-    {/* Legs */}
-    <path d="M45 115 Q42 125 46 132 Q50 136 54 132" stroke="currentColor" strokeWidth="1.2" fill="none" />
-    <path d="M75 115 Q78 125 74 132 Q70 136 66 132" stroke="currentColor" strokeWidth="1.2" fill="none" />
-    {/* Mouse/Mushak at bottom */}
-    <ellipse cx="60" cy="136" rx="6" ry="3" stroke="currentColor" strokeWidth="0.8" fill="none" />
-    <path d="M66 136 Q70 134 72 136" stroke="currentColor" strokeWidth="0.8" fill="none" />
+    {/* ── CROWN (MUKUT) ── */}
+    {/* Top Kalash / Flame Finial */}
+    <path d="M52 3 C53.5 3 55 4.5 55 6.5 C55 8.5 53.5 10 52 10.5 C50.5 10 49 8.5 49 6.5 C49 4.5 50.5 3 52 3 Z" />
+    <path d="M50.5 10.5 L53.5 10.5 L55 13 L49 13 Z" />
+
+    {/* Upper Crown Tier */}
+    <path
+      fillRule="evenodd"
+      d="M45 13.5 C49 12.8 55 12.8 59 13.5 L61 18 C57 17.2 47 17.2 43 18 Z M47 15.5 A 1 1 0 1 0 49 15.5 A 1 1 0 1 0 47 15.5 M51 15.2 A 1.1 1.1 0 1 0 53.2 15.2 A 1.1 1.1 0 1 0 51 15.2 M55 15.5 A 1 1 0 1 0 57 15.5 A 1 1 0 1 0 55 15.5"
+    />
+
+    {/* Main Middle Crown Tier with Filigree */}
+    <path
+      fillRule="evenodd"
+      d="M38 18.5 C46 16.5 58 16.5 66 18.5 C68 21.5 69 25.5 66 28 C59 26.5 45 26.5 38 28 C35 25.5 36 21.5 38 18.5 Z M43 22 C49 20 55 20 61 22 C55 24 49 24 43 22 Z M40 24.5 A 0.9 0.9 0 1 0 41.8 24.5 A 0.9 0.9 0 1 0 40 24.5 M62 24.5 A 0.9 0.9 0 1 0 63.8 24.5 A 0.9 0.9 0 1 0 62 24.5"
+    />
+
+    {/* Base Band of Crown with Pearls */}
+    <path d="M36 29 C44 27 60 27 68 29 C69 31 68 32.5 66 33.5 C58 31.5 46 31.5 38 33.5 C36 32.5 35 31 36 29 Z" />
+    <circle cx="41" cy="34.5" r="0.8" />
+    <circle cx="46" cy="35" r="0.8" />
+    <circle cx="52" cy="35.3" r="0.9" />
+    <circle cx="58" cy="35" r="0.8" />
+    <circle cx="63" cy="34.5" r="0.8" />
+
+    {/* ── SACRED HEAD, EAR, TRUNK & FACE ── */}
+    <path
+      fillRule="evenodd"
+      d="M50 33 C56 32 63 34 67 38 C71 42 72 47 70 53 C68 62 67 71 62 80 C57 87 50 91 43 90 C36 89 31 82 33 75 C35 68 42 64 49 67 C54 70 54 76 50 80 C47 82 43 81 42 78 C42 76 44 74 46 75 C47 76 47 77 46 78 C44 79 43 78 43 77 C43 74 47 71 50 73 C54 76 52 82 47 84 C41 86 36 82 37 76 C38 69 45 64 53 66 C61 68 64 76 61 84 C58 91 50 95 42 94 C35 93 29 87 29 80 C29 73 34 67 40 64 C34 62 27 58 23 52 C19 46 20 39 25 34 C30 29 39 31 46 33 Z M41 36 C36 34 29 36 26 41 C23 45 24 51 28 55 C33 59 39 60 43 57 C39 55 35 52 32 47 C30 42 34 38 41 36 Z"
+    />
+
+    {/* Eyebrow */}
+    <path d="M53 38.5 C57 36.5 62 37.5 65 40.5" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" fill="none" />
+    {/* Lotus Eye */}
+    <path d="M54 42 C57.5 39.5 61.5 40.5 64 43 C61.5 45.5 57.5 45 54 42 Z" />
+    <path d="M55.5 42.2 Q58.5 41.2 61.5 42.8" stroke="var(--color-ivory, #fff)" strokeWidth="0.8" fill="none" opacity="0.8" />
+
+    {/* Tilak mark */}
+    <path d="M52 33 C53.2 33 53.8 34.5 53.5 36 C53 37 52.5 37 52 36 C51.5 35 51.5 33 52 33 Z" />
+    <path d="M50 35.5 Q52 36.8 54 35.5" stroke="currentColor" strokeWidth="0.8" fill="none" strokeLinecap="round" />
+
+    {/* Right Tusk */}
+    <path d="M64 54 L70 55 L65 57 Z" fill="var(--color-ivory, #fff)" />
+
+    {/* ── ORNATE PAISLEY & FILIGREE BASE SWIRLS ── */}
+    {/* Upper Right Swirl */}
+    <path
+      fillRule="evenodd"
+      d="M68 47 C74 45 80 49 81 55 C82 61 77 67 70 68 C75 66 78 61 77 56 C76 52 72 49 68 50 Z"
+    />
+    <circle cx="75" cy="56" r="1" />
+
+    {/* Mid Right Swirl */}
+    <path
+      fillRule="evenodd"
+      d="M67 61 C75 60 82 65 82 72 C82 80 76 85 68 85 C74 83 78 78 78 73 C78 68 73 64 68 64 Z"
+    />
+    <circle cx="74" cy="73" r="1.1" />
+
+    {/* Lower Right Swirl */}
+    <path
+      fillRule="evenodd"
+      d="M61 78 C70 79 78 85 77 92 C76 99 68 103 60 102 C67 100 72 95 71 90 C70 85 65 81 60 80 Z"
+    />
+
+    {/* Bottom Pedestal Swirls */}
+    <path
+      fillRule="evenodd"
+      d="M51 90 C60 91 69 96 67 103 C65 109 56 111 47 108 C54 107 60 103 60 98 C60 94 55 91 49 90 Z"
+    />
+    <path
+      fillRule="evenodd"
+      d="M40 86 C34 88 30 94 32 99 C34 104 42 106 48 104 C42 104 37 101 37 97 C37 93 41 89 45 88 Z"
+    />
   </svg>
 );
 
@@ -266,6 +305,16 @@ export const EventIcons: Record<string, React.FC<{ className?: string }>> = {
       <path d="M4 20 Q4 14 16 12 Q28 14 28 20" />
       <path d="M16 8 Q14 4 16 2 Q18 4 16 8Z" fill="currentColor" opacity="0.3" />
       <line x1="16" y1="8" x2="16" y2="12" />
+    </svg>
+  ),
+  haldi: ({ className }) => (
+    <svg viewBox="0 0 32 32" className={className} fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
+      <path d="M6 18 Q16 29 26 18" strokeLinecap="round" />
+      <ellipse cx="16" cy="18" rx="10" ry="3.5" />
+      <path d="M10 18 Q16 12 22 18" fill="currentColor" opacity="0.3" />
+      <path d="M16 7 Q14 10 16 12 Q18 10 16 7Z" fill="currentColor" opacity="0.5" />
+      <circle cx="9" cy="11" r="1" fill="currentColor" opacity="0.4" />
+      <circle cx="23" cy="11" r="1" fill="currentColor" opacity="0.4" />
     </svg>
   ),
 };

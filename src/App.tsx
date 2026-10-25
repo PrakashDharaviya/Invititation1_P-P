@@ -7,20 +7,18 @@ import Header from './components/Header';
 import Hero from './components/Hero';
 import Blessings from './components/Blessings';
 import ScratchReveal from './components/ScratchReveal';
-import Countdown from './components/Countdown';
-import Timeline from './components/Timeline';
 import Venue from './components/Venue';
 import Gallery from './components/Gallery';
 import Darshanabhilashi from './components/Darshanabhilashi';
-import Tahuko from './components/Tahuko';
 import RSVP from './components/RSVP';
+import CoupleMemories from './components/CoupleMemories';
 import Finale from './components/Finale';
 
 function WeddingApp() {
   const [hasEntered, setHasEntered] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
   const prefersReduced = useReducedMotion();
-  const { play, toggleMute, isMuted } = useAudio('/audio/wedding_music.mp3');
+  const { play, toggleMute, isMuted } = useAudio('/audio/Kriss_Flute.mp3');
 
   // Initialize Lenis smooth scroll
   useEffect(() => {
@@ -87,13 +85,11 @@ function WeddingApp() {
         <Hero />
         <Blessings />
         <ScratchReveal />
-        <Countdown />
-        <Timeline />
         <Venue />
         <Gallery />
         <Darshanabhilashi />
-        <Tahuko />
         <RSVP />
+        <CoupleMemories />
       </main>
 
       {/* Finale & Footer */}

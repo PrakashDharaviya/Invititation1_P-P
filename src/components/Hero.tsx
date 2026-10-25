@@ -173,7 +173,7 @@ export default function Hero() {
             custom={1}
           >
             <GaneshSvg
-              className="w-full h-full text-[var(--color-gold)] ganesh-interactive"
+              className="w-full h-full text-[var(--color-maroon)] ganesh-interactive drop-shadow-sm transition-transform duration-300 hover:scale-105 cursor-pointer"
               onClick={handleGaneshTap}
             />
           </motion.div>

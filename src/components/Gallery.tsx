@@ -56,60 +56,138 @@ export default function Gallery() {
           <div className="w-24 h-1 bg-gradient-to-r from-transparent via-[var(--color-gold)] to-transparent mx-auto mt-4" />
         </motion.div>
 
-        {/* Gallery Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-          {galleryData.photos.map((photo, i) => (
-            <motion.div
-              key={i}
-              className="group relative rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500 border-2 border-[rgba(201,162,75,0.4)] bg-[var(--color-maroon-dark)] cursor-pointer"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.12, duration: 0.6 }}
-              whileHover={{ y: -6, scale: 1.02 }}
-              onClick={() => openLightbox(i)}
-            >
-              {/* Photo Image */}
-              <div className="aspect-[4/3] sm:aspect-[4/3] w-full overflow-hidden relative">
-                <img
-                  src={photo.src}
-                  alt={photo.alt}
-                  className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
-                  loading="lazy"
-                />
+        {/* Gallery Groups Date-wise */}
+        {galleryData.groups && galleryData.groups.length > 0 ? (
+          galleryData.groups.map((group, groupIdx) => {
+            const baseIndex = galleryData.groups
+              .slice(0, groupIdx)
+              .reduce((acc, g) => acc + g.photos.length, 0);
 
-                {/* Subtle vignette gradient */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[rgba(42,18,22,0.85)] via-transparent to-[rgba(42,18,22,0.2)] opacity-60 group-hover:opacity-80 transition-opacity duration-300" />
-
-                {/* Golden corner accents */}
-                <div className="absolute top-2 left-2 w-4 h-4 border-t-2 border-l-2 border-[var(--color-gold)] opacity-70 group-hover:opacity-100 transition-opacity" />
-                <div className="absolute top-2 right-2 w-4 h-4 border-t-2 border-r-2 border-[var(--color-gold)] opacity-70 group-hover:opacity-100 transition-opacity" />
-                <div className="absolute bottom-2 left-2 w-4 h-4 border-b-2 border-l-2 border-[var(--color-gold)] opacity-70 group-hover:opacity-100 transition-opacity" />
-                <div className="absolute bottom-2 right-2 w-4 h-4 border-b-2 border-r-2 border-[var(--color-gold)] opacity-70 group-hover:opacity-100 transition-opacity" />
-              </div>
-
-              {/* Caption Bar */}
-              <div className="p-4 bg-[var(--color-maroon-dark)] border-t border-[rgba(201,162,75,0.3)] flex items-center justify-between">
-                <div>
-                  <p
-                    className="text-[var(--color-gold-light)] font-medium text-base tracking-wide"
+            return (
+              <div key={groupIdx} className="mb-14 last:mb-0">
+                {/* Day Header Badge */}
+                <motion.div
+                  className="text-center mb-8"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                >
+                  <h3
+                    className="inline-block px-7 py-2.5 bg-[var(--color-maroon)] text-[var(--color-gold-light)] rounded-full text-lg md:text-xl font-semibold shadow-lg border border-[rgba(201,162,75,0.4)]"
                     style={{ fontFamily: 'var(--font-gujarati-display)' }}
                   >
-                    {t(photo.caption)}
-                  </p>
-                  <p className="text-[var(--color-ivory)] opacity-60 text-xs">
-                    {photo.alt}
-                  </p>
-                </div>
-                <div className="w-8 h-8 rounded-full border border-[var(--color-gold)] text-[var(--color-gold)] flex items-center justify-center opacity-80 group-hover:opacity-100 group-hover:bg-[var(--color-gold)] group-hover:text-[var(--color-maroon-dark)] transition-all">
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7" />
-                  </svg>
+                    {t(group.day)}
+                  </h3>
+                </motion.div>
+
+                {/* Photo Grid for this day */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+                  {group.photos.map((photo, pIdx) => {
+                    const globalIdx = baseIndex + pIdx;
+                    return (
+                      <motion.div
+                        key={globalIdx}
+                        className="group relative rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500 border-2 border-[rgba(201,162,75,0.4)] bg-[var(--color-maroon-dark)] cursor-pointer"
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: (pIdx % 3) * 0.12, duration: 0.6 }}
+                        whileHover={{ y: -6, scale: 1.02 }}
+                        onClick={() => openLightbox(globalIdx)}
+                      >
+                        {/* Photo Image */}
+                        <div className="aspect-[4/3] sm:aspect-[4/3] w-full overflow-hidden relative">
+                          <img
+                            src={photo.src}
+                            alt={photo.alt}
+                            className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+                            loading="lazy"
+                          />
+
+                          {/* Subtle vignette gradient */}
+                          <div className="absolute inset-0 bg-gradient-to-t from-[rgba(42,18,22,0.85)] via-transparent to-[rgba(42,18,22,0.2)] opacity-60 group-hover:opacity-80 transition-opacity duration-300" />
+
+                          {/* Golden corner accents */}
+                          <div className="absolute top-2 left-2 w-4 h-4 border-t-2 border-l-2 border-[var(--color-gold)] opacity-70 group-hover:opacity-100 transition-opacity" />
+                          <div className="absolute top-2 right-2 w-4 h-4 border-t-2 border-r-2 border-[var(--color-gold)] opacity-70 group-hover:opacity-100 transition-opacity" />
+                          <div className="absolute bottom-2 left-2 w-4 h-4 border-b-2 border-l-2 border-[var(--color-gold)] opacity-70 group-hover:opacity-100 transition-opacity" />
+                          <div className="absolute bottom-2 right-2 w-4 h-4 border-b-2 border-r-2 border-[var(--color-gold)] opacity-70 group-hover:opacity-100 transition-opacity" />
+                        </div>
+
+                        {/* Caption Bar */}
+                        <div className="p-4 bg-[var(--color-maroon-dark)] border-t border-[rgba(201,162,75,0.3)] flex items-center justify-between">
+                          <div>
+                            <p
+                              className="text-[var(--color-gold-light)] font-medium text-base tracking-wide"
+                              style={{ fontFamily: 'var(--font-gujarati-display)' }}
+                            >
+                              {t(photo.caption)}
+                            </p>
+                            <p className="text-[var(--color-ivory)] opacity-60 text-xs">
+                              {photo.alt}
+                            </p>
+                          </div>
+                          <div className="w-8 h-8 rounded-full border border-[var(--color-gold)] text-[var(--color-gold)] flex items-center justify-center opacity-80 group-hover:opacity-100 group-hover:bg-[var(--color-gold)] group-hover:text-[var(--color-maroon-dark)] transition-all flex-shrink-0">
+                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
+                              <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7" />
+                            </svg>
+                          </div>
+                        </div>
+                      </motion.div>
+                    );
+                  })}
                 </div>
               </div>
-            </motion.div>
-          ))}
-        </div>
+            );
+          })
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+            {galleryData.photos.map((photo, i) => (
+              <motion.div
+                key={i}
+                className="group relative rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500 border-2 border-[rgba(201,162,75,0.4)] bg-[var(--color-maroon-dark)] cursor-pointer"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.12, duration: 0.6 }}
+                whileHover={{ y: -6, scale: 1.02 }}
+                onClick={() => openLightbox(i)}
+              >
+                <div className="aspect-[4/3] sm:aspect-[4/3] w-full overflow-hidden relative">
+                  <img
+                    src={photo.src}
+                    alt={photo.alt}
+                    className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[rgba(42,18,22,0.85)] via-transparent to-[rgba(42,18,22,0.2)] opacity-60 group-hover:opacity-80 transition-opacity duration-300" />
+                  <div className="absolute top-2 left-2 w-4 h-4 border-t-2 border-l-2 border-[var(--color-gold)] opacity-70 group-hover:opacity-100 transition-opacity" />
+                  <div className="absolute top-2 right-2 w-4 h-4 border-t-2 border-r-2 border-[var(--color-gold)] opacity-70 group-hover:opacity-100 transition-opacity" />
+                  <div className="absolute bottom-2 left-2 w-4 h-4 border-b-2 border-l-2 border-[var(--color-gold)] opacity-70 group-hover:opacity-100 transition-opacity" />
+                  <div className="absolute bottom-2 right-2 w-4 h-4 border-b-2 border-r-2 border-[var(--color-gold)] opacity-70 group-hover:opacity-100 transition-opacity" />
+                </div>
+                <div className="p-4 bg-[var(--color-maroon-dark)] border-t border-[rgba(201,162,75,0.3)] flex items-center justify-between">
+                  <div>
+                    <p
+                      className="text-[var(--color-gold-light)] font-medium text-base tracking-wide"
+                      style={{ fontFamily: 'var(--font-gujarati-display)' }}
+                    >
+                      {t(photo.caption)}
+                    </p>
+                    <p className="text-[var(--color-ivory)] opacity-60 text-xs">
+                      {photo.alt}
+                    </p>
+                  </div>
+                  <div className="w-8 h-8 rounded-full border border-[var(--color-gold)] text-[var(--color-gold)] flex items-center justify-center opacity-80 group-hover:opacity-100 group-hover:bg-[var(--color-gold)] group-hover:text-[var(--color-maroon-dark)] transition-all flex-shrink-0">
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7" />
+                    </svg>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        )}
       </div>
 
       {/* Lightbox Modal */}

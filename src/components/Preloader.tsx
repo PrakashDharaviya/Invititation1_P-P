@@ -71,7 +71,7 @@ export default function Preloader({ onComplete }: PreloaderProps) {
 
       {/* Center Royal Card & Open Invitation Button */}
       <div
-        className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-30 flex flex-col items-center text-center px-6 py-8 w-[90%] max-w-md rounded-3xl transition-all duration-500 cursor-default ${
+        className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-30 flex flex-col items-center text-center px-5 py-6 md:px-6 md:py-8 w-[92%] max-w-md max-h-[96vh] overflow-y-auto rounded-3xl transition-all duration-500 cursor-default ${
           isOpening ? 'opacity-0 scale-95 pointer-events-none' : 'opacity-100 scale-100'
         }`}
         style={{

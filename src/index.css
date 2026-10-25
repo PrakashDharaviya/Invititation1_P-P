@@ -834,18 +834,57 @@
 /* ── Scroll Cue ─────────────────────────────────────────────────────── */
 .hero-scroll-cue {
   position: absolute;
-  bottom: clamp(16px, 3vh, 32px);
-  left: 50%;
-  transform: translateX(-50%);
+  bottom: clamp(20px, 4vh, 36px);
+  left: 0;
+  right: 0;
   z-index: 6;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   gap: 4px;
-  color: rgba(255, 248, 236, 0.75);
+  color: rgba(255, 248, 236, 0.8);
   font-size: 0.65rem;
   text-transform: uppercase;
   letter-spacing: 0.15em;
+  width: 100%;
+  text-align: center;
+  pointer-events: none;
+}
+
+/* ── Small mobile (< 400px, e.g. Poco M4 Pro) ──────────────────────── */
+@media (max-width: 400px) {
+  .hero-photo-section {
+    padding-bottom: 60px; /* space for scroll cue */
+  }
+  .hero-glass-card {
+    width: 94vw;
+  }
+  .hero-card-inner {
+    padding: 1.25rem 0.85rem;
+  }
+  .hero-mantras {
+    font-size: 0.58rem;
+    margin-bottom: 0.5rem;
+  }
+  .hero-ganesh {
+    width: 48px;
+    height: 58px;
+    margin-bottom: 0.4rem;
+  }
+  .hero-shloka {
+    font-size: 0.68rem;
+    margin-bottom: 0.5rem;
+  }
+  .hero-title {
+    font-size: 1.75rem;
+  }
+  .hero-name {
+    font-size: 1.2rem;
+  }
+  .hero-ampersand {
+    font-size: 1.4rem;
+  }
 }
 
 /* ── Desktop hero layout ────────────────────────────────────────────── */
