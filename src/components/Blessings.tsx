@@ -68,7 +68,7 @@ export default function Blessings() {
             </svg>
           </div>
           <p
-            className="text-base md:text-lg leading-relaxed text-[var(--color-dark)]"
+            className="text-base md:text-lg leading-relaxed text-[var(--color-dark)] whitespace-pre-line"
             style={{ fontFamily: 'var(--font-gujarati-body)', lineHeight: '2' }}
           >
             {t(blessings.invitationParagraph)}

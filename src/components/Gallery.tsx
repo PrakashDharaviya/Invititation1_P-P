@@ -7,6 +7,10 @@ export default function Gallery() {
   const { t } = useLang();
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
+  const allPhotos = galleryData.groups && galleryData.groups.length > 0
+    ? galleryData.groups.flatMap((g) => g.photos)
+    : galleryData.photos;
+
   const openLightbox = useCallback((index: number) => {
     setLightboxIndex(index);
   }, []);
@@ -19,11 +23,11 @@ export default function Gallery() {
     setLightboxIndex(prev => {
       if (prev === null) return null;
       const next = prev + direction;
-      if (next < 0) return galleryData.photos.length - 1;
-      if (next >= galleryData.photos.length) return 0;
+      if (next < 0) return allPhotos.length - 1;
+      if (next >= allPhotos.length) return 0;
       return next;
     });
-  }, []);
+  }, [allPhotos.length]);
 
   // Handle keyboard navigation
   const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
@@ -45,7 +49,7 @@ export default function Gallery() {
           viewport={{ once: true }}
         >
           <span className="text-[var(--color-saffron)] text-xs font-semibold uppercase tracking-widest block mb-2">
-            {t({ gu: 'મંગલ ક્ષણો', en: 'Treasured Moments' })}
+            {t({ gu: 'શુભ ઉત્સવ', en: 'Wedding Celebrations' })}
           </span>
           <h2
             className="text-3xl md:text-5xl text-[var(--color-maroon)] font-bold"
@@ -242,8 +246,8 @@ export default function Gallery() {
             >
               <div className="overflow-hidden flex items-center justify-center max-h-[70vh]">
                 <img
-                  src={galleryData.photos[lightboxIndex].src}
-                  alt={galleryData.photos[lightboxIndex].alt}
+                  src={allPhotos[lightboxIndex].src}
+                  alt={allPhotos[lightboxIndex].alt}
                   className="max-h-[70vh] w-auto object-contain"
                 />
               </div>
@@ -255,15 +259,15 @@ export default function Gallery() {
                     className="text-[var(--color-gold-light)] font-semibold text-lg"
                     style={{ fontFamily: 'var(--font-gujarati-display)' }}
                   >
-                    {t(galleryData.photos[lightboxIndex].caption)}
+                    {t(allPhotos[lightboxIndex].caption)}
                   </p>
                   <p className="text-[var(--color-ivory)] opacity-70 text-xs">
-                    {galleryData.photos[lightboxIndex].alt}
+                    {allPhotos[lightboxIndex].alt}
                   </p>
                 </div>
                 <div className="text-right">
                   <span className="px-3 py-1 rounded-full border border-[var(--color-gold)] text-[var(--color-gold)] text-xs font-medium">
-                    {lightboxIndex + 1} / {galleryData.photos.length}
+                    {lightboxIndex + 1} / {allPhotos.length}
                   </span>
                 </div>
               </div>

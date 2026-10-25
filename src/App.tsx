@@ -7,11 +7,10 @@ import Header from './components/Header';
 import Hero from './components/Hero';
 import Blessings from './components/Blessings';
 import ScratchReveal from './components/ScratchReveal';
-import Venue from './components/Venue';
-import Gallery from './components/Gallery';
-import Darshanabhilashi from './components/Darshanabhilashi';
-import RSVP from './components/RSVP';
 import CoupleMemories from './components/CoupleMemories';
+import Gallery from './components/Gallery';
+import Venue from './components/Venue';
+import RSVP from './components/RSVP';
 import Finale from './components/Finale';
 
 function WeddingApp() {
@@ -85,11 +84,10 @@ function WeddingApp() {
         <Hero />
         <Blessings />
         <ScratchReveal />
-        <Venue />
-        <Gallery />
-        <Darshanabhilashi />
-        <RSVP />
         <CoupleMemories />
+        <Gallery />
+        <Venue />
+        <RSVP />
       </main>
 
       {/* Finale & Footer */}

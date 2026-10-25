@@ -27,13 +27,13 @@ export const config = {
 
 // ── MANTRAS & SHLOKA ─────────────────────────────────────────────────────────
 export const mantras: ContentMap = {
-  gu: '॥ ૐ ગં ગણપતયે નમઃ ॥  ॥ ૐ ચામુંડાયૈ નમઃ ॥  ॥ શ્રી જાનકી વલ્લભો વિજયતે ॥  ॥ ૐ હં હનુમતે નમઃ ॥',
-  en: '॥ Om Gan Ganapataye Namah ॥  ॥ Om Chamundayai Namah ॥  ॥ Shri Janaki Vallabho Vijayate ॥  ॥ Om Hanumate Namah ॥',
+  gu: '॥ ૐ ગં ગણપતયે નમઃ ॥  ॥ ૐ ચામુંડાયૈ નમઃ ॥\n॥ શ્રી જાનકી વલ્લભો વિજયતે ॥  ॥ ૐ હં હનુમતે નમઃ ॥',
+  en: '॥ Om Gan Ganapataye Namah ॥  ॥ Om Chamundayai Namah ॥\n॥ Shri Janaki Vallabho Vijayate ॥  ॥ Om Hanumate Namah ॥',
 };
 
 export const shloka: ContentMap = {
-  gu: 'વક્રતુણ્ડ મહાકાય, સૂર્યકોટિ સમપ્રભઃ ।\nનિર્વિઘ્નં કુરુ મે દેવ સર્વકાર્યેષુ સર્વદા ॥',
-  en: 'Vakratunda Mahakaya, Suryakoti Samaprabha,\nNirvighnam Kuru Me Deva Sarvakaryeshu Sarvada.',
+  gu: '॥ વક્રતુણ્ડ મહાકાય, સૂર્યકોટિ સમપ્રભઃ ।\nનિર્વિઘ્નં કુરુ મે દેવ સર્વકાર્યેષુ સર્વદા ॥',
+  en: '॥ Vakratunda Mahakaya, Suryakoti Samaprabha,\nNirvighnam Kuru Me Deva Sarvakaryeshu Sarvada ॥',
 };
 
 // ── HERO ──────────────────────────────────────────────────────────────────────
@@ -72,12 +72,12 @@ export const blessings = {
     en: 'Blessings from the Heavens',
   } as ContentMap,
   elders: {
-    gu: 'દાદા-દાદી, મમ્મી-પપ્પા અને સદગુરુ ॐ દેવ શ્રી શ્રી ૧૦૦૮ શત્રુઘ્નદાસ મહારાજ.',
-    en: 'Grandparents, and Sadguru Om Dev Shri Shri 1008 Shatrughndas Maharaj.',
+    gu: 'દાદા-દાદી, મમ્મી-પપ્પા અને સદગુરુ ॐ દેવ શ્રી શ્રી ૧૦૦૮ શત્રુઘ્નદાસજી મહારાજ.',
+    en: 'Grandparents, and Sadguru Om Dev Shri Shri 1008 Shatrughndasji Maharaj.',
   } as ContentMap,
   invitationParagraph: {
     gu: 'મૂળ વતન હડિયાણા, હાલ-જામનગર નિવાસી અ.સૌ. નયનાબેન તથા શ્રી મગનભાઈ ઘેલાભાઈ પરમારના સુપુત્ર ડૉ. પ્રેમ ના શુભ લગ્ન ડૉ. પ્રિયંકા અ.સૌ. નિતાબેન તથા શ્રી સુરેશભાઈ ગોરધનભાઈ ખાણદરની સુપુત્રી સાથે રવિવાર તા. ૧૩-૧૨-૨૦૨૬ ના શુભ દિને નિરધારેલ છે. તો આ શુભ અવસરે નવદંપતી ને આશીર્વાદ આપવા સ્નેહભર્યું નિમંત્રણ છે.',
-    en: 'Originally from Hadiyana, currently residing in Jamnagar, Mrs. Nayanaben and Shri Maganbhai Ghelabhai Parmar cordially invite you to the auspicious wedding of their son Dr. Prem with Dr. Priyanka , daughter of Mrs. Nitaben and Shri Sureshbhai Gordhanbhai Khandar, on the auspicious day of Sunday, 13th December 2026. We warmly invite you to bless the newlyweds on this joyous occasion.',
+    en: 'Originally from Hadiyana, currently residing in Jamnagar, Mrs. Nayanaben and\nShri Maganbhai Ghelabhai Parmar cordially invite you to the auspicious wedding of their son\nDr. Prem with Dr. Priyanka, daughter of Mrs. Nitaben and Shri Sureshbhai Gordhanbhai Khandar, on the auspicious day of Sunday, 13th December 2026. We warmly invite you to bless the newlyweds on this joyous occasion.',
   } as ContentMap,
 };
 
@@ -92,10 +92,9 @@ export const familyNames = {
       { gu: 'ગં.સ્વ. મધુબેન નવીનભાઈ પરમાર', en: 'Late Smt. Madhuben Navinbhai Parmar', relation: { gu: 'મોટા બા', en: 'Elder Aunt' } as ContentMap },
       { gu: 'શ્રી મગનભાઈ ઘેલાભાઈ પરમાર', en: 'Shri Maganbhai Ghelabhai Parmar', relation: { gu: 'પિતાશ્રી', en: 'Father' } as ContentMap },
       { gu: 'અ.સૌ. નયનાબેન મગનભાઈ પરમાર', en: 'Smt. Nayanaben Maganbhai Parmar', relation: { gu: 'માતુશ્રી', en: 'Mother' } as ContentMap },
-      { gu: 'શ્રી ભાવેશભાઈ નવીનભાઈ પરમાર', en: 'Shri Bhaveshbhai Navinbhai Parmar', relation: { gu: 'ભાઈ', en: 'Brother' } as ContentMap },
-      { gu: 'અ.સૌ. વર્ષાબેન ભાવેશભાઈ પરમાર', en: 'Smt. Varshaben Bhaveshbhai Parmar', relation: { gu: 'ભાભી', en: 'Sister In Law' } as ContentMap },
-      { gu: 'શ્રી સુનિલભાઈ નવીનભાઈ પરમાર', en: 'Shri Sunilbhai Navinbhai Parmar', relation: { gu: 'ભાઈ', en: 'Brother' } as ContentMap },
-      { gu: 'અ.સૌ. રશ્મીબેન સુનિલભાઈ પરમાર', en: 'Smt. Rashmiben Sunilbhai Parmar', relation: { gu: 'ભાભી', en: 'Sister In Law' } as ContentMap },
+      { gu: 'ડૉ. ક્રિશ્નાબેન મિહિરભાઈ કણજારીયા', en: 'Dr. Krishnaben Mihirbhai Kanjaria ', relation: { gu: 'બેન', en: 'Sister' } as ContentMap },
+      { gu: 'અ.સૌ. મિનલબેન હિતેનભાઈ નકુમ', en: 'Smt. Minalben Hitenbhai Nakum ', relation: { gu: 'બેન', en: 'Sister' } as ContentMap },
+
     ],
   },
   brideSide: {
@@ -344,15 +343,15 @@ export const rsvp = {
 
 // ── NAV LINKS ────────────────────────────────────────────────────────────────
 export const navLinks = [
-  { id: 'venue', label: { gu: 'સ્થળ', en: 'Venue' } as ContentMap },
-  { id: 'gallery', label: { gu: 'વિધિ-પળો', en: 'Moments' } as ContentMap },
   { id: 'memories', label: { gu: 'યાદો', en: 'Memories' } as ContentMap },
+  { id: 'gallery', label: { gu: 'લગ્નોત્સવ', en: 'Wedding Festivities' } as ContentMap },
+  { id: 'venue', label: { gu: 'સ્થળ', en: 'Venue' } as ContentMap },
   { id: 'rsvp', label: { gu: 'RSVP', en: 'RSVP' } as ContentMap },
 ];
 
 // ── GALLERY ──────────────────────────────────────────────────────────────────
 export const gallery = {
-  heading: { gu: 'અમારી યાદો', en: 'Our Moments' } as ContentMap,
+  heading: { gu: 'લગ્નોત્સવ', en: 'Wedding Festivities' } as ContentMap,
   groups: [
     {
       day: {
@@ -361,22 +360,22 @@ export const gallery = {
       } as ContentMap,
       photos: [
         {
-          src: '/images/gallery/couple-portrait.jpg',
+          src: '/images/gallery/Ganesh_Pooja.jpeg',
           alt: '12-December-2026 || Time : 8:00 AM',
           caption: { gu: 'ગણપતિ પૂજન', en: 'Ganesh Poojan' } as ContentMap,
         },
         {
-          src: '/images/gallery/rings-hands.jpg',
+          src: '/images/gallery/Mamera.jpeg',
           alt: '12-December-2026 || Time : 10:00 AM',
           caption: { gu: 'મામેરા', en: 'Mamera' } as ContentMap,
         },
         {
-          src: '/images/gallery/haldi-ceremony.jpg',
+          src: '/images/gallery/Haldi.jpeg',
           alt: '12-December-2026 || Time : 5:00 PM',
           caption: { gu: 'પીઠી ચોળવાનો ઉત્સવ', en: 'Joyful Haldi Celebration' } as ContentMap,
         },
         {
-          src: '/images/gallery/dandiya-raas.jpg',
+          src: '/images/gallery/Dandiya.jpeg',
           alt: '12-December-2026 || Time : 8:00 PM',
           caption: { gu: 'રંગભીનો દાંડીયા રાસ', en: 'Festive Dandiya Raas Night' } as ContentMap,
         },
@@ -389,18 +388,18 @@ export const gallery = {
       } as ContentMap,
       photos: [
         {
-          src: '/images/gallery/mandap-decor.jpg',
+          src: '/images/gallery/Engagement.jpeg',
           alt: '13-December-2026 || Time : 8:30 AM',
           caption: { gu: 'સગાઈ વિધિ', en: 'Engagement Ceremony' } as ContentMap,
         },
         {
-          src: '/images/gallery/hast-melap.jpg',
-          alt: '13-December-2026 || Time : 7:00 AM',
+          src: '/images/gallery/Jan_Paryan.jpeg',
+          alt: '13-December-2026 || Time : 4:00 PM',
           caption: { gu: 'જાન પ્રયાણ', en: 'Jan Prayan' } as ContentMap,
         },
         {
-          src: '/images/gallery/hast-melap.jpg',
-          alt: '13-December-2026 || Time : 7:00 AM',
+          src: '/images/gallery/Hast_Medap.jpeg',
+          alt: '13-December-2026 || Time : 7:00 PM',
           caption: { gu: 'પવિત્ર હસ્તમેળાપ વિધિ', en: 'Sacred Hast Melap Ritual' } as ContentMap,
         },
       ],
@@ -408,38 +407,38 @@ export const gallery = {
   ],
   photos: [
     {
-      src: '/images/gallery/couple-portrait.jpg',
+      src: '/images/gallery/Ganesh_Pooja.jpeg',
       alt: '12-December-2026 || Time : 8:00 AM',
       caption: { gu: 'ગણપતિ પૂજન', en: 'Ganesh Poojan' } as ContentMap,
     },
     {
-      src: '/images/gallery/rings-hands.jpg',
+      src: '/images/gallery/Mamera.jpeg',
       alt: '12-December-2026 || Time : 10:00 AM',
       caption: { gu: 'મામેરા', en: 'Mamera' } as ContentMap,
     },
     {
-      src: '/images/gallery/haldi-ceremony.jpg',
+      src: '/images/gallery/Haldi.jpeg',
       alt: '12-December-2026 || Time : 5:00 PM',
       caption: { gu: 'પીઠી ચોળવાનો ઉત્સવ', en: 'Joyful Haldi Celebration' } as ContentMap,
     },
     {
-      src: '/images/gallery/dandiya-raas.jpg',
+      src: '/images/gallery/Dandiya.jpeg',
       alt: '12-December-2026 || Time : 8:00 PM',
       caption: { gu: 'રંગભીનો દાંડીયા રાસ', en: 'Festive Dandiya Raas Night' } as ContentMap,
     },
     {
-      src: '/images/gallery/mandap-decor.jpg',
+      src: '/images/gallery/Engagement.jpeg',
       alt: '13-December-2026 || Time : 8:30 AM',
       caption: { gu: 'સગાઈ વિધિ', en: 'Engagement Ceremony' } as ContentMap,
     },
     {
-      src: '/images/gallery/hast-melap.jpg',
-      alt: '13-December-2026 || Time : 7:00 AM',
+      src: '/images/gallery/Jan_Paryan.jpeg',
+      alt: '13-December-2026 || Time : 4:00 PM',
       caption: { gu: 'જાન પ્રયાણ', en: 'Jan Prayan' } as ContentMap,
     },
     {
-      src: '/images/gallery/hast-melap.jpg',
-      alt: '13-December-2026 || Time : 7:00 AM',
+      src: '/images/gallery/Hast_Medap.jpeg',
+      alt: '13-December-2026 || Time : 7:00 PM',
       caption: { gu: 'પવિત્ર હસ્તમેળાપ વિધિ', en: 'Sacred Hast Melap Ritual' } as ContentMap,
     },
   ],
