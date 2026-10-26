@@ -20,7 +20,7 @@ export const config = {
   /** RSVP webhook URL (Formspree / Google Apps Script / Web3Forms) */
   rsvpWebhookUrl: '', // TODO(client): Add your webhook URL
   /** WhatsApp number for RSVP (with country code, no +) */
-  whatsappNumber: '919687529362', // TODO(client): Confirm number
+  whatsappNumber: '918733066977', // TODO(client): Confirm number
   /** Contact numbers (tap-to-call) */
   contactNumbers: ['96875 29362', '87330 66977'], // TODO(client): Confirm
 };
