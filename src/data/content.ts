@@ -89,7 +89,7 @@ export const familyNames = {
       { gu: 'સ્વ. ઘેલાભાઈ વાલાભાઈ પરમાર', en: 'Late Shri Ghelabhai Valabhai Parmar', relation: { gu: 'દાદાજી', en: 'Grandfather' } as ContentMap },
       { gu: 'સ્વ. વિજયાબેન ઘેલાભાઈ પરમાર', en: 'Late Smt. Vijayaben Ghelabhai Parmar', relation: { gu: 'દાદીમા', en: 'Grandmother' } as ContentMap },
       { gu: 'સ્વ. નવીનભાઈ ઘેલાભાઈ પરમાર', en: 'Late Shri Navinbhai Ghelabhai Parmar', relation: { gu: 'મોટા બાપુજી', en: 'Elder Uncle' } as ContentMap },
-      { gu: 'ગં.સ્વ. મધુબેન નવીનભાઈ પરમાર', en: 'Late Smt. Madhuben Navinbhai Parmar', relation: { gu: 'મોટા બા', en: 'Elder Aunt' } as ContentMap },
+      { gu: 'અ.સૌ. મધુબેન નવીનભાઈ પરમાર', en: 'Smt. Madhuben Navinbhai Parmar', relation: { gu: 'મોટા બા', en: 'Elder Aunt' } as ContentMap },
       { gu: 'શ્રી મગનભાઈ ઘેલાભાઈ પરમાર', en: 'Shri Maganbhai Ghelabhai Parmar', relation: { gu: 'પિતાશ્રી', en: 'Father' } as ContentMap },
       { gu: 'અ.સૌ. નયનાબેન મગનભાઈ પરમાર', en: 'Smt. Nayanaben Maganbhai Parmar', relation: { gu: 'માતુશ્રી', en: 'Mother' } as ContentMap },
       { gu: 'ડૉ. ક્રિશ્નાબેન મિહિરભાઈ કણજારીયા', en: 'Dr. Krishnaben Mihirbhai Kanjaria ', relation: { gu: 'બેન', en: 'Sister' } as ContentMap },

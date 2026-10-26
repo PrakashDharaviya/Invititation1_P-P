@@ -22,7 +22,6 @@ export default function RSVP() {
     message: '',
   });
   const [submitted, setSubmitted] = useState(false);
-  const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState('');
 
   const allEvents = timeline.flatMap(day =>
@@ -38,55 +37,82 @@ export default function RSVP() {
     }));
   };
 
-  const handleSubmit = useCallback(async (e: React.FormEvent) => {
+  const buildWhatsAppMessage = useCallback((formData: FormData) => {
+    const attendingText = formData.attending === 'yes'
+      ? (lang === 'gu' ? 'હર્ષભેર ઉપસ્થિત રહીશું' : 'Joyfully Attending')
+      : (lang === 'gu' ? 'ઉપસ્થિત રહી શકીશું નહીં' : 'Unable to Attend');
+
+    if (lang === 'gu') {
+      const lines = [
+        '*નમસ્તે!*',
+        '',
+        `હું *${formData.name.trim() || '___'}* - ડૉ. પ્રેમ અને ડૉ. પ્રિયંકાના શુભ લગ્ન પ્રસંગે:`,
+        `*ઉપસ્થિતિ:* ${attendingText}`,
+      ];
+      if (formData.attending === 'yes') {
+        lines.push(`*મહેમાનો:* ${formData.guests}`);
+      }
+      if (formData.events.length > 0) {
+        lines.push(`*પ્રસંગ:* ${formData.events.join(', ')}`);
+      }
+      if (formData.message.trim()) {
+        lines.push(`*સંદેશ:* ${formData.message.trim()}`);
+      }
+      lines.push('');
+      lines.push('*ખૂબ ખૂબ શુભકામનાઓ!*');
+      return lines.join('\n');
+    }
+
+    const lines = [
+      '*Hello!*',
+      '',
+      `I am *${formData.name.trim() || '___'}* - regarding Dr. Prem & Dr. Priyanka's Wedding:`,
+      `*Attendance:* ${attendingText}`,
+    ];
+    if (formData.attending === 'yes') {
+      lines.push(`*Guests:* ${formData.guests}`);
+    }
+    if (formData.events.length > 0) {
+      lines.push(`*Events:* ${formData.events.join(', ')}`);
+    }
+    if (formData.message.trim()) {
+      lines.push(`*Message:* ${formData.message.trim()}`);
+    }
+    lines.push('');
+    lines.push('*Warmest Congratulations!*');
+    return lines.join('\n');
+  }, [lang]);
+
+  const handleSubmit = useCallback((e: React.FormEvent) => {
     e.preventDefault();
     setError('');
 
     if (!form.name.trim()) {
-      setError(t({ gu: 'કૃપા કરી નામ દાખલ કરો', en: 'Please enter your name' }));
+      setError(t({ gu: 'કૃપા કરી આપનું નામ દાખલ કરો', en: 'Please enter your name' }));
       return;
     }
     if (!form.attending) {
-      setError(t({ gu: 'કૃપા કરી ઉપસ્થિતિ પસંદ કરો', en: 'Please select attendance' }));
+      setError(t({ gu: 'કૃપા કરી આપની ઉપસ્થિતિ પસંદ કરો', en: 'Please select attendance' }));
       return;
     }
 
-    setSubmitting(true);
-    try {
-      if (config.rsvpWebhookUrl) {
-        await fetch(config.rsvpWebhookUrl, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            name: form.name,
-            attending: form.attending,
-            guests: form.guests,
-            events: form.events.join(', '),
-            message: form.message,
-            language: lang,
-            timestamp: new Date().toISOString(),
-          }),
-        });
-      }
-      setSubmitted(true);
-      confetti({
-        particleCount: 60,
-        spread: 80,
-        origin: { y: 0.6 },
-        colors: ['#E8CF8A', '#C9A24B', '#E07B1F'],
-      });
-    } catch {
-      setError(t({ gu: 'કંઈક ખોટું થયું, કૃપા કરી ફરી પ્રયાસ કરો', en: 'Something went wrong, please try again' }));
-    }
-    setSubmitting(false);
-  }, [form, t, lang]);
+    const msg = buildWhatsAppMessage(form);
+    const waUrl = `https://wa.me/${config.whatsappNumber}?text=${encodeURIComponent(msg)}`;
+    window.open(waUrl, '_blank');
 
-  const whatsappMessage = encodeURIComponent(
-    t({
-      gu: `🙏 નમસ્તે!\nહું ${form.name || '___'} - ડૉ. પ્રેમ અને ડૉ. પ્રિયંકાના લગ્નમાં ${form.attending === 'yes' ? 'ઉપસ્થિત રહીશ' : 'ઉપસ્થિત રહી શકીશ નહીં'}.\nમહેમાન: ${form.guests}\nસંદેશ: ${form.message || '-'}`,
-      en: `🙏 Hello!\nI'm ${form.name || '___'} - I will ${form.attending === 'yes' ? 'be attending' : 'not be able to attend'} Dr. Prem & Dr. Priyanka's wedding.\nGuests: ${form.guests}\nMessage: ${form.message || '-'}`,
-    })
-  );
+    confetti({
+      particleCount: 60,
+      spread: 80,
+      origin: { y: 0.6 },
+      colors: ['#E8CF8A', '#C9A24B', '#E07B1F', '#25D366'],
+    });
+
+    setSubmitted(true);
+  }, [form, t, buildWhatsAppMessage]);
+
+  const currentWaUrl = `https://wa.me/${config.whatsappNumber}?text=${encodeURIComponent(
+    buildWhatsAppMessage(form)
+  )}`;
 
   if (submitted) {
     return (
@@ -95,15 +121,38 @@ export default function RSVP() {
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
-            className="card-ornate max-w-md mx-auto py-12"
+            className="card-ornate max-w-md mx-auto py-10 px-6"
           >
             <span className="text-5xl mb-4 block">🎉</span>
             <p
-              className="text-xl font-bold text-[var(--color-maroon)] mb-2"
+              className="text-2xl font-bold text-[var(--color-maroon)] mb-2"
               style={{ fontFamily: 'var(--font-gujarati-display)' }}
             >
               {t(rsvpData.successMessage)}
             </p>
+            <p className="text-sm text-[var(--color-dark)] opacity-80 mb-6">
+              {t({
+                gu: 'આપનો RSVP સંદેશ WhatsApp પર તૈયાર છે. જો WhatsApp ન ખૂલ્યું હોય તો નીચેનું બટન દબાવો.',
+                en: 'Your RSVP message is ready on WhatsApp. If WhatsApp did not open, tap the button below.',
+              })}
+            </p>
+            <div className="flex flex-col sm:flex-row gap-3 justify-center">
+              <a
+                href={currentWaUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-whatsapp text-sm py-2.5 px-5"
+              >
+                💬 {t({ gu: 'WhatsApp ફરી ખોલો', en: 'Open WhatsApp Again' })}
+              </a>
+              <button
+                type="button"
+                onClick={() => setSubmitted(false)}
+                className="btn-outline-gold text-xs py-2.5 px-4 cursor-pointer"
+              >
+                {t({ gu: 'ફરીથી ફોર્મ ભરો', en: 'Edit / Fill Again' })}
+              </button>
+            </div>
           </motion.div>
         </div>
       </section>
@@ -163,9 +212,9 @@ export default function RSVP() {
               <button
                 type="button"
                 onClick={() => setForm({ ...form, attending: 'yes' })}
-                className={`flex-1 py-3 rounded-lg border-2 text-sm font-medium transition-all ${
+                className={`flex-1 py-3 rounded-lg border-2 text-sm font-medium transition-all cursor-pointer ${
                   form.attending === 'yes'
-                    ? 'border-[var(--color-gold)] bg-[var(--color-gold)] text-[var(--color-maroon-dark)]'
+                    ? 'border-[var(--color-gold)] bg-[var(--color-gold)] text-[var(--color-maroon-dark)] shadow-sm'
                     : 'border-gray-200 hover:border-[var(--color-gold)]'
                 }`}
               >
@@ -174,9 +223,9 @@ export default function RSVP() {
               <button
                 type="button"
                 onClick={() => setForm({ ...form, attending: 'no' })}
-                className={`flex-1 py-3 rounded-lg border-2 text-sm font-medium transition-all ${
+                className={`flex-1 py-3 rounded-lg border-2 text-sm font-medium transition-all cursor-pointer ${
                   form.attending === 'no'
-                    ? 'border-[var(--color-maroon)] bg-[var(--color-maroon)] text-[var(--color-ivory)]'
+                    ? 'border-[var(--color-maroon)] bg-[var(--color-maroon)] text-[var(--color-ivory)] shadow-sm'
                     : 'border-gray-200 hover:border-[var(--color-maroon)]'
                 }`}
               >
@@ -216,9 +265,9 @@ export default function RSVP() {
                     key={i}
                     type="button"
                     onClick={() => toggleEvent(event.id)}
-                    className={`px-3 py-1.5 rounded-full text-xs font-medium border transition-all ${
+                    className={`px-3 py-1.5 rounded-full text-xs font-medium border transition-all cursor-pointer ${
                       form.events.includes(event.id)
-                        ? 'bg-[var(--color-gold)] text-[var(--color-maroon-dark)] border-[var(--color-gold)]'
+                        ? 'bg-[var(--color-gold)] text-[var(--color-maroon-dark)] border-[var(--color-gold)] shadow-sm'
                         : 'border-gray-300 text-[var(--color-dark)] hover:border-[var(--color-gold)]'
                     }`}
                   >
@@ -248,23 +297,22 @@ export default function RSVP() {
             <p className="text-red-600 text-sm mb-4" role="alert">{error}</p>
           )}
 
-          {/* Submit & WhatsApp */}
-          <div className="flex flex-col sm:flex-row gap-3">
+          {/* Option C: WhatsApp Only Submit */}
+          <div className="mt-4">
             <button
               type="submit"
-              className="btn-gold flex-1"
-              disabled={submitting}
+              className="btn-whatsapp w-full flex items-center justify-center gap-2 text-base font-bold shadow-lg"
+              id="rsvp-whatsapp-submit"
             >
-              {submitting ? '...' : `✉️ ${t(rsvpData.fields.submit)}`}
+              <span className="text-xl">💬</span>
+              <span>{t(rsvpData.whatsappButton)}</span>
             </button>
-            <a
-              href={`https://wa.me/${config.whatsappNumber}?text=${whatsappMessage}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-maroon flex-1 text-center"
-            >
-              💬 {t(rsvpData.whatsappButton)}
-            </a>
+            <p className="text-center text-xs text-[var(--color-dark)] opacity-60 mt-3">
+              {t({
+                gu: 'આ બટન દબાવતા સીધો WhatsApp મેસેજ મોકલી શકાશે',
+                en: 'Tapping this button will open WhatsApp with your response',
+              })}
+            </p>
           </div>
         </motion.form>
       </div>
