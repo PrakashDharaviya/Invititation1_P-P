@@ -40,8 +40,8 @@ export const shloka: ContentMap = {
 export const hero = {
   title: { gu: 'મંગલ પરિણય', en: 'Auspicious Wedding' } as ContentMap,
   subtitle: { gu: '॥ શુભ વિવાહ ॥', en: '॥ Shubh Vivah ॥' } as ContentMap,
-  groom: { gu: 'ડૉ. પ્રેમ (MBBS)', en: 'Dr. Prem (MBBS)' } as ContentMap,
-  bride: { gu: 'ડૉ. પ્રિયંકા (M.S. ENT)', en: 'Dr. Priyanka (M.S. ENT)' } as ContentMap,
+  groom: { gu: 'ડૉ. પ્રેમ ', en: 'Dr. Prem ' } as ContentMap,
+  bride: { gu: 'ડૉ. પ્રિયંકા ', en: 'Dr. Priyanka ' } as ContentMap,
   date: {
     gu: 'તા. ૧૩-૧૨-૨૦૨૬, રવિવાર',
     en: '13th December 2026, Sunday',
@@ -72,8 +72,8 @@ export const blessings = {
     en: 'Blessings from the Heavens',
   } as ContentMap,
   elders: {
-    gu: 'દાદા-દાદી, મમ્મી-પપ્પા અને સદગુરુ ॐ દેવ શ્રી શ્રી ૧૦૦૮ શત્રુઘ્નદાસજી મહારાજ.',
-    en: 'Grandparents, and Sadguru Om Dev Shri Shri 1008 Shatrughndasji Maharaj.',
+    gu: 'દાદા-દાદી, મમ્મી-પપ્પા અને સદગુરુ દેવ શ્રી શ્રી ૧૦૦૮ શત્રુઘ્નદાસજી મહારાજ.',
+    en: 'Grandparents, and Sadguru Dev Shri Shri 1008 Shatrughndasji Maharaj.',
   } as ContentMap,
   invitationParagraph: {
     gu: 'મૂળ વતન હડિયાણા, હાલ-જામનગર નિવાસી અ.સૌ. નયનાબેન તથા શ્રી મગનભાઈ ઘેલાભાઈ પરમારના સુપુત્ર ડૉ. પ્રેમ ના શુભ લગ્ન ડૉ. પ્રિયંકા અ.સૌ. નિતાબેન તથા શ્રી સુરેશભાઈ ગોરધનભાઈ ખાણદરની સુપુત્રી સાથે રવિવાર તા. ૧૩-૧૨-૨૦૨૬ ના શુભ દિને નિરધારેલ છે. તો આ શુભ અવસરે નવદંપતી ને આશીર્વાદ આપવા સ્નેહભર્યું નિમંત્રણ છે.',
@@ -89,7 +89,7 @@ export const familyNames = {
       { gu: 'સ્વ. ઘેલાભાઈ વાલાભાઈ પરમાર', en: 'Late Shri Ghelabhai Valabhai Parmar', relation: { gu: 'દાદાજી', en: 'Grandfather' } as ContentMap },
       { gu: 'સ્વ. વિજયાબેન ઘેલાભાઈ પરમાર', en: 'Late Smt. Vijayaben Ghelabhai Parmar', relation: { gu: 'દાદીમા', en: 'Grandmother' } as ContentMap },
       { gu: 'સ્વ. નવીનભાઈ ઘેલાભાઈ પરમાર', en: 'Late Shri Navinbhai Ghelabhai Parmar', relation: { gu: 'મોટા બાપુજી', en: 'Elder Uncle' } as ContentMap },
-      { gu: 'અ.સૌ. મધુબેન નવીનભાઈ પરમાર', en: 'Smt. Madhuben Navinbhai Parmar', relation: { gu: 'મોટા બા', en: 'Elder Aunt' } as ContentMap },
+      { gu: 'ગં.સ્વ. મધુબેન નવીનભાઈ પરમાર', en: 'Smt. Madhumben Navinbhai Parmar', relation: { gu: 'મોટા બા', en: 'Elder Aunt' } as ContentMap },
       { gu: 'શ્રી મગનભાઈ ઘેલાભાઈ પરમાર', en: 'Shri Maganbhai Ghelabhai Parmar', relation: { gu: 'પિતાશ્રી', en: 'Father' } as ContentMap },
       { gu: 'અ.સૌ. નયનાબેન મગનભાઈ પરમાર', en: 'Smt. Nayanaben Maganbhai Parmar', relation: { gu: 'માતુશ્રી', en: 'Mother' } as ContentMap },
       { gu: 'ડૉ. ક્રિશ્નાબેન મિહિરભાઈ કણજારીયા', en: 'Dr. Krishnaben Mihirbhai Kanjaria ', relation: { gu: 'બેન', en: 'Sister' } as ContentMap },
