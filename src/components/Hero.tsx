@@ -4,7 +4,7 @@ import confetti from 'canvas-confetti';
 import { GaneshSvg } from '../assets/ornaments';
 import { hero, mantras, shloka } from '../data/content';
 import { useLang } from '../hooks/useLang';
-import { useReducedMotion } from '../hooks/useUtils';
+import { useReducedMotion, splitNameAndDegree } from '../hooks/useUtils';
 
 // Vite image imports
 import heroBgMobile from '../assets/hero-bg-mobile.jpg';
@@ -57,6 +57,19 @@ function FallingPetals({ count = 18 }: { count?: number }) {
 export default function Hero() {
   const { t } = useLang();
   const prefersReduced = useReducedMotion();
+
+  const groom = splitNameAndDegree(
+    t(hero.groom),
+    (hero as unknown as { groomDegree?: typeof hero.groom }).groomDegree
+      ? t((hero as unknown as { groomDegree: typeof hero.groom }).groomDegree)
+      : undefined
+  );
+  const bride = splitNameAndDegree(
+    t(hero.bride),
+    (hero as unknown as { brideDegree?: typeof hero.bride }).brideDegree
+      ? t((hero as unknown as { brideDegree: typeof hero.bride }).brideDegree)
+      : undefined
+  );
   const sectionRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -229,9 +242,8 @@ export default function Hero() {
 
           {/* Couple names */}
           <div className="hero-couple">
-            <motion.h2
-              className="hero-name"
-              style={{ fontFamily: 'var(--font-gujarati-display)' }}
+            <motion.div
+              className="flex flex-col items-center"
               initial={{ opacity: 0, x: -40, filter: 'blur(10px)' }}
               animate={{ opacity: 1, x: 0, filter: 'blur(0px)' }}
               transition={{
@@ -240,8 +252,18 @@ export default function Hero() {
                 ease: [0.16, 1, 0.3, 1],
               }}
             >
-              {t(hero.groom)}
-            </motion.h2>
+              <h2
+                className="hero-name"
+                style={{ fontFamily: 'var(--font-gujarati-display)' }}
+              >
+                {groom.name}
+              </h2>
+              {groom.degree && (
+                <span className="text-[var(--color-gold-dark)] text-xs md:text-sm font-semibold tracking-wider uppercase mt-0.5 opacity-90 font-sans">
+                  {groom.degree}
+                </span>
+              )}
+            </motion.div>
             <motion.span
               className="hero-ampersand"
               style={{ fontFamily: 'var(--font-latin-display)' }}
@@ -251,9 +273,8 @@ export default function Hero() {
             >
               &amp;
             </motion.span>
-            <motion.h2
-              className="hero-name"
-              style={{ fontFamily: 'var(--font-gujarati-display)' }}
+            <motion.div
+              className="flex flex-col items-center"
               initial={{ opacity: 0, x: 40, filter: 'blur(10px)' }}
               animate={{ opacity: 1, x: 0, filter: 'blur(0px)' }}
               transition={{
@@ -262,8 +283,18 @@ export default function Hero() {
                 ease: [0.16, 1, 0.3, 1],
               }}
             >
-              {t(hero.bride)}
-            </motion.h2>
+              <h2
+                className="hero-name"
+                style={{ fontFamily: 'var(--font-gujarati-display)' }}
+              >
+                {bride.name}
+              </h2>
+              {bride.degree && (
+                <span className="text-[var(--color-gold-dark)] text-xs md:text-sm font-semibold tracking-wider uppercase mt-0.5 opacity-90 font-sans">
+                  {bride.degree}
+                </span>
+              )}
+            </motion.div>
           </div>
 
           {/* Date */}

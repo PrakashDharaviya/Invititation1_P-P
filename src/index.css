@@ -936,7 +936,9 @@
   }
   .hero-couple {
     flex-direction: row;
-    gap: 1rem;
+    align-items: center;
+    justify-content: center;
+    gap: 1.25rem;
   }
   .hero-bg-img {
     object-position: center center;

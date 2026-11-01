@@ -227,3 +227,16 @@ export function useAudio(src?: string) {
 
   return { play, stop, toggleMute, isPlaying, isMuted };
 }
+
+/**
+ * Safely splits a person's display name and their qualification degree
+ * (e.g. "Dr. Prem (MBBS)" -> { name: "Dr. Prem", degree: "(MBBS)" })
+ */
+export function splitNameAndDegree(fullName: string, fallbackDegree?: string): { name: string; degree: string } {
+  if (!fullName) return { name: '', degree: fallbackDegree || '' };
+  const match = fullName.match(/^(.*?)\s*(\([A-Za-z0-9.\s&+-]+\))\s*$/);
+  if (match) {
+    return { name: match[1].trim(), degree: match[2].trim() };
+  }
+  return { name: fullName.trim(), degree: fallbackDegree?.trim() || '' };
+}

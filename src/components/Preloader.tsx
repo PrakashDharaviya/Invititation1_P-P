@@ -1,6 +1,7 @@
 import { useState, useCallback } from 'react';
 import { useLang } from '../hooks/useLang';
 import { hero } from '../data/content';
+import { splitNameAndDegree } from '../hooks/useUtils';
 import Petals from './Petals';
 
 interface PreloaderProps {
@@ -20,6 +21,19 @@ export default function Preloader({ onComplete }: PreloaderProps) {
       onComplete();
     }, 1100);
   }, [isOpening, isDone, onComplete]);
+
+  const groom = splitNameAndDegree(
+    t(hero.groom),
+    (hero as unknown as { groomDegree?: typeof hero.groom }).groomDegree
+      ? t((hero as unknown as { groomDegree: typeof hero.groom }).groomDegree)
+      : undefined
+  );
+  const bride = splitNameAndDegree(
+    t(hero.bride),
+    (hero as unknown as { brideDegree?: typeof hero.bride }).brideDegree
+      ? t((hero as unknown as { brideDegree: typeof hero.bride }).brideDegree)
+      : undefined
+  );
 
   if (isDone) return null;
 
@@ -102,21 +116,37 @@ export default function Preloader({ onComplete }: PreloaderProps) {
 
         {/* Couple Names */}
         <div className="my-2 flex flex-col items-center">
-          <h1
-            className="text-[var(--color-maroon)] text-3xl md:text-5xl font-bold leading-tight"
-            style={{ fontFamily: 'var(--font-gujarati-display)' }}
-          >
-            {t(hero.groom)}
-          </h1>
+          <div className="flex flex-col items-center">
+            <h1
+              className="text-[var(--color-maroon)] text-3xl md:text-5xl font-bold leading-tight"
+              style={{ fontFamily: 'var(--font-gujarati-display)' }}
+            >
+              {groom.name}
+            </h1>
+            {groom.degree && (
+              <span className="text-[var(--color-maroon-dark)] text-xs md:text-sm font-semibold tracking-wider uppercase mt-0.5 opacity-85">
+                {groom.degree}
+              </span>
+            )}
+          </div>
+
           <span className="text-[var(--color-saffron)] text-2xl md:text-3xl my-1 font-serif italic">
             &amp;
           </span>
-          <h1
-            className="text-[var(--color-maroon)] text-3xl md:text-5xl font-bold leading-tight"
-            style={{ fontFamily: 'var(--font-gujarati-display)' }}
-          >
-            {t(hero.bride)}
-          </h1>
+
+          <div className="flex flex-col items-center">
+            <h1
+              className="text-[var(--color-maroon)] text-3xl md:text-5xl font-bold leading-tight"
+              style={{ fontFamily: 'var(--font-gujarati-display)' }}
+            >
+              {bride.name}
+            </h1>
+            {bride.degree && (
+              <span className="text-[var(--color-maroon-dark)] text-xs md:text-sm font-semibold tracking-wider uppercase mt-0.5 opacity-85">
+                {bride.degree}
+              </span>
+            )}
+          </div>
         </div>
 
         {/* Golden Diamond Divider */}

@@ -40,8 +40,10 @@ export const shloka: ContentMap = {
 export const hero = {
   title: { gu: 'મંગલ પરિણય', en: 'Auspicious Wedding' } as ContentMap,
   subtitle: { gu: '॥ શુભ વિવાહ ॥', en: '॥ Shubh Vivah ॥' } as ContentMap,
-  groom: { gu: 'ડૉ. પ્રેમ ', en: 'Dr. Prem ' } as ContentMap,
-  bride: { gu: 'ડૉ. પ્રિયંકા ', en: 'Dr. Priyanka ' } as ContentMap,
+  groom: { gu: 'ડૉ. પ્રેમ', en: 'Dr. Prem' } as ContentMap,
+  groomDegree: { gu: '(એમબીબીએસ)', en: '(MBBS)' } as ContentMap,
+  bride: { gu: 'ડૉ. પ્રિયંકા', en: 'Dr. Priyanka' } as ContentMap,
+  brideDegree: { gu: '(એમ.એસ.ઈ.એન.ટી.)', en: '(M.S.ENT)' } as ContentMap,
   date: {
     gu: 'તા. ૧૩-૧૨-૨૦૨૬, રવિવાર',
     en: '13th December 2026, Sunday',
@@ -89,7 +91,7 @@ export const familyNames = {
       { gu: 'સ્વ. ઘેલાભાઈ વાલાભાઈ પરમાર', en: 'Late Shri Ghelabhai Valabhai Parmar', relation: { gu: 'દાદાજી', en: 'Grandfather' } as ContentMap },
       { gu: 'સ્વ. વિજયાબેન ઘેલાભાઈ પરમાર', en: 'Late Smt. Vijayaben Ghelabhai Parmar', relation: { gu: 'દાદીમા', en: 'Grandmother' } as ContentMap },
       { gu: 'સ્વ. નવીનભાઈ ઘેલાભાઈ પરમાર', en: 'Late Shri Navinbhai Ghelabhai Parmar', relation: { gu: 'મોટા બાપુજી', en: 'Elder Uncle' } as ContentMap },
-      { gu: 'ગં.સ્વ. મધુબેન નવીનભાઈ પરમાર', en: 'Smt. Madhumben Navinbhai Parmar', relation: { gu: 'મોટા બા', en: 'Elder Aunt' } as ContentMap },
+      { gu: 'ગં.સ્વ. મધુબેન નવીનભાઈ પરમાર', en: 'Gang.Sw. Madhumben Navinbhai Parmar', relation: { gu: 'મોટા બા', en: 'Elder Aunt' } as ContentMap },
       { gu: 'શ્રી મગનભાઈ ઘેલાભાઈ પરમાર', en: 'Shri Maganbhai Ghelabhai Parmar', relation: { gu: 'પિતાશ્રી', en: 'Father' } as ContentMap },
       { gu: 'અ.સૌ. નયનાબેન મગનભાઈ પરમાર', en: 'Smt. Nayanaben Maganbhai Parmar', relation: { gu: 'માતુશ્રી', en: 'Mother' } as ContentMap },
       { gu: 'ડૉ. ક્રિશ્નાબેન મિહિરભાઈ કણજારીયા', en: 'Dr. Krishnaben Mihirbhai Kanjaria ', relation: { gu: 'બેન', en: 'Sister' } as ContentMap },
