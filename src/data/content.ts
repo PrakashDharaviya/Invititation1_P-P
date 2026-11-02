@@ -74,8 +74,8 @@ export const blessings = {
     en: 'Blessings from the Heavens',
   } as ContentMap,
   elders: {
-    gu: 'દાદા-દાદી, મમ્મી-પપ્પા અને સદગુરુ દેવ શ્રી શ્રી ૧૦૦૮ શત્રુઘ્નદાસજી મહારાજ.',
-    en: 'Grandparents, and Sadguru Dev Shri Shri 1008 Shatrughndasji Maharaj.',
+    gu: 'મોટા બાપુ,દાદા-દાદી અને સદગુરુ દેવ શ્રી શ્રી ૧૦૦૮ શત્રુઘ્નદાસજી મહારાજ.',
+    en: 'Elder Uncle,Grandparents and Sadguru Dev Shri Shri 1008 Shatrughndasji Maharaj.',
   } as ContentMap,
   invitationParagraph: {
     gu: 'મૂળ વતન હડિયાણા, હાલ-જામનગર નિવાસી અ.સૌ. નયનાબેન તથા શ્રી મગનભાઈ ઘેલાભાઈ પરમારના સુપુત્ર ડૉ. પ્રેમ ના શુભ લગ્ન ડૉ. પ્રિયંકા અ.સૌ. નિતાબેન તથા શ્રી સુરેશભાઈ ગોરધનભાઈ ખાણદરની સુપુત્રી સાથે રવિવાર તા. ૧૩-૧૨-૨૦૨૬ ના શુભ દિને નિરધારેલ છે. તો આ શુભ અવસરે નવદંપતી ને આશીર્વાદ આપવા સ્નેહભર્યું નિમંત્રણ છે.',
